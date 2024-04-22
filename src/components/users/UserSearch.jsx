@@ -1,8 +1,10 @@
 import { useContext, useState } from 'react';
 import githubContext from '../../context/github/GithubContext';
+import alertContext from '../../context/alert/AlertContext';
 
 const UserSearch = () => {
   const { users, searchUsers, clearUsers } = useContext(githubContext);
+  const { setAlert } = useContext(alertContext);
 
   const [text, setText] = useState('');
 
@@ -14,7 +16,7 @@ const UserSearch = () => {
     e.preventDefault();
 
     if (!text) {
-      alert('Please enter something');
+      setAlert('Please enter something', 'error');
       return;
     }
 
